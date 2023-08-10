@@ -13,6 +13,7 @@ class Menu:
                     raise OutOfRangeError
             except (ValueError, OutOfRangeError):
                 print("Only numbers from 1 to 5")
+                self.choice = None
             else:
                 self.choice = choice
                 break
