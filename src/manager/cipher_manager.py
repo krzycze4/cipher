@@ -27,7 +27,7 @@ class CipherManager(Manager):
         self.menu.display_welcome()
         while True:
             self.menu.display_main_menu()
-            self.menu.take_choice(limit=5) #TODO - zmień na len(dict)
+            self.menu.take_choice(limit=len(self.menu_options))
             self.execute()
 
     def execute(self):
@@ -36,7 +36,7 @@ class CipherManager(Manager):
     def encrypt_text(self):
         user_input = input("\nText content: ")
         self.menu.display_cipher_menu()
-        self.menu.take_choice(limit=2) #TODO - zmień na len(dict)
+        self.menu.take_choice(limit=len(self.cipher_options))
         content = self.cipher_options.get(self.menu.choice).encrypt(user_input)
         status = "encrypted"
         rot_type = str(self.cipher_options.get(self.menu.choice))
