@@ -1,6 +1,7 @@
-from abc import ABC
+from abc import ABC, abstractmethod
 
 
 class AbstractFactory(ABC):
-    def create_object(self):
+    @abstractmethod
+    def create_object(self, *args):
         raise NotImplementedError
