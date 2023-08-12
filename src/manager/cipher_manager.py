@@ -14,9 +14,6 @@ class CipherManager(Manager):
 
         self.choice: Union[None, int] = None
         self.content_input: Union[None, str] = None
-
-        self.cipher_rot13 = CipherROT13()
-        self.cipher_rot47 = CipherROT47()
         self.buffer = []
         self.menu_options = {
             1: self.crypt_text,
@@ -26,8 +23,8 @@ class CipherManager(Manager):
             5: self.exit
         }
         self.cipher_options = {
-            1: self.cipher_rot13,
-            2: self.cipher_rot47
+            1: CipherROT13(),
+            2: CipherROT47()
         }
         self.status = {
             1: "encrypted",
@@ -84,6 +81,7 @@ class CipherManager(Manager):
                 print("Empty input")
             else:
                 self.content_input = user_input
+                break
 
     def encrypt_text(self) -> str:
         return self.cipher_options.get(self.choice).encrypt(text_content=self.content_input)
