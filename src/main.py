@@ -1,5 +1,9 @@
+from src.managers.cipher_manager import CipherManager
+
+
 def main():
-    pass
+    manager = CipherManager()
+    manager.run()
 
 
 if __name__ == '__main__':

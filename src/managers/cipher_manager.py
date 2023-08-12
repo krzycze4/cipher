@@ -4,8 +4,8 @@ from src.ciphers.cipher_rot13 import CipherROT13
 from src.ciphers.cipher_rot47 import CipherROT47
 from src.exceptions.exceptions import OutOfRangeError, EmptyInputError
 from src.factories.text_factory import TextFactory
-from src.manager.manager import Manager
-from src.menu.menu import Menu
+from src.managers.manager import Manager
+from src.menus.menu import Menu
 
 
 class CipherManager(Manager):
@@ -91,13 +91,13 @@ class CipherManager(Manager):
 
     def save_buffer(self):
         # zapytaj o nazwę pliku do zapisu
-        # context manager z jsonem, flaga "a"
+        # context managers z jsonem, flaga "a"
         # zapis
         pass
 
     def load_to_buffer(self):
         # zapytaj o nazwę pliku do zapisu
-        # context manager z jsonem, flaga "a"
+        # context managers z jsonem, flaga "a"
         # odczyt do buffera
         pass
 
