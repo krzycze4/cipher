@@ -2,16 +2,18 @@ from src.ciphers.cipher import Cipher
 
 
 class CipherROT47(Cipher):
-    def encrypt(self, text_content: str) -> str:
+    @classmethod
+    def encrypt(cls, text_content: str) -> str:
         encrypted_chars = []
         for char in text_content:
-            encrypted_chars.append(self.shift_char(char=char, char_shift=47))
+            encrypted_chars.append(cls.shift_char(char=char, char_shift=47))
         return "".join(encrypted_chars)
 
-    def decrypt(self, text_content: str) -> str:
+    @classmethod
+    def decrypt(cls, text_content: str) -> str:
         encrypted_chars = []
         for char in text_content:
-            encrypted_chars.append(self.shift_char(char=char, char_shift=-47))
+            encrypted_chars.append(cls.shift_char(char=char, char_shift=-47))
         output = "".join(encrypted_chars)
         return output
 
