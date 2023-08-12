@@ -24,7 +24,7 @@ class CipherROT13(Cipher):
             char_decimal = ord(char)
             if char_decimal in range(ord("A"), ord("Z") + 1):
                 char_decimal = char_decimal - 13
-                if char_decimal < ord("A"):
+                if char_decimal > ord("Z"):
                     char_decimal = ord("Z") - char_decimal + ord("A") + 1
             elif char_decimal in range(ord("a"), ord("z") + 1):
                 char_decimal = char_decimal - 13
