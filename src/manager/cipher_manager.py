@@ -41,16 +41,19 @@ class CipherManager(Manager):
         status = "encrypted"
         rot_type = str(self.cipher_options.get(self.menu.choice))
         text = TextFactory().create_object(content, rot_type, status)
+        print(text._content)
         self.buffer.append(text)
 
     def decrypt_text(self):
-        # tutaj będziesz pobierał content
-        # pobierał rot
-        # użyj szyfru - TODO DECRYPTION
-        # określał status
-        # użyjesz tutaj factory
-        # dodasz do buffer
-        pass
+        user_input = input("\nText content: ")
+        self.menu.display_cipher_menu()
+        self.menu.take_choice(limit=len(self.cipher_options))
+        content = self.cipher_options.get(self.menu.choice).decrypt(user_input)
+        status = "decrypted"
+        rot_type = str(self.cipher_options.get(self.menu.choice))
+        text = TextFactory().create_object(content, rot_type, status)
+        print(text._content)
+        self.buffer.append(text)
 
     def save_buffer(self):
         # zapytaj o nazwę pliku do zapisu
