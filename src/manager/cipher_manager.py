@@ -54,7 +54,7 @@ class CipherManager(Manager):
         user_input = input("\nText content: ")
         self.menu.display_cipher_menu()
         self.take_choice(limit=len(self.cipher_options))
-        content = self.cipher_options.get(self.choice).encrypt(user_input)
+        content = self.cipher_options.get(self.choice).encrypt(text_content=user_input)
         status = "encrypted"
         rot_type = str(self.cipher_options.get(self.choice))
         text = TextFactory().create_object(content=content, rot_type=rot_type, status=status)
