@@ -1,2 +1,6 @@
 class OutOfRangeError(Exception):
     ...
+
+
+class EmptyInputError(Exception):
+    ...
