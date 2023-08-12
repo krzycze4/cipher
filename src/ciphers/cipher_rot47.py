@@ -20,8 +20,8 @@ class CipherROT47(Cipher):
             char_decimal = ord(char)
             if char_decimal in range(ord("!"), ord("~") + 1):
                 char_decimal = char_decimal - 47
-                if char_decimal < ord("~"):
-                    char_decimal = ord("!") - char_decimal + ord("~") + 1
+                if char_decimal < ord("!"):
+                    char_decimal = ord("~") - ord("!") + char_decimal + 1
             encrypted_chars.append(chr(char_decimal))
         output = "".join(encrypted_chars)
         return output
