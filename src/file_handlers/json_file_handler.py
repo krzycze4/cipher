@@ -49,6 +49,6 @@ class JsonFileHandler(FileHandler):
             status = text.get("status")
 
             text_obj = TextFactory().create_object(content=content,
-                                                         rot_type=rot_type,
-                                                         status=status)
+                                                   rot_type=rot_type,
+                                                   status=status)
             self.texts.append(text_obj)
