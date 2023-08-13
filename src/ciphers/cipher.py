@@ -12,7 +12,7 @@ class Cipher(ABC):
     def encrypt(self, text_content: str) -> str:
         """
         This is abstract method. Encrypt parameter text_content.
-        :param text_content: str
+        :param: text_content: str
         :raise: NotImplementedError
         """
         raise NotImplementedError
