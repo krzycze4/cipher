@@ -12,7 +12,6 @@ from src.menus.menu import Menu
 class CipherManager(Manager):
     def __init__(self):
         self.menu = Menu()
-        # podziel self.choice na dwa (menu oraz cipher)
         self.choice: Union[None, int] = None
         self.content_input: Union[None, str] = None
         self.file_handler = JsonFileHandler()
@@ -61,12 +60,13 @@ class CipherManager(Manager):
         self.menu_options.get(self.choice)()
 
     def crypt_text(self) -> None:
+        status = self.status.get(self.choice)
+
         self.take_input_content()
         self.menu.display_cipher_menu()
         self.take_choice(limit=len(self.cipher_options))
 
         rot_type = str(self.cipher_options.get(self.choice))
-        status = self.status.get(self.choice)
         content = self.crypt_options.get(self.choice)()
         text = TextFactory().create_object(content=content, rot_type=rot_type, status=status)
 
