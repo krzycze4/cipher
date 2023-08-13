@@ -6,17 +6,47 @@ LOWER_RANGE = range(ord("a"), ord("z") + 1)
 
 
 class CipherROT13(Cipher):
+    """
+    This is class CipherROT13.
+    Inheritance from abstract class Cipher.
+    Rotate characters in word by 13
+    in forward(encrypt) or backward(decrypt).
+    Example: "A" -> "N",
+             "a" -> "n",
+             "N -> "A",
+             "n" -> "a"
+    """
 
     @classmethod
     def encrypt(cls, text_content: str) -> str:
+        """
+        This is class method.
+        Encrypt parameter text_content and return encrypted string.
+        :param text_content: str.
+        :return: str
+        """
         return cls.create_new_string(text_content=text_content, char_shift=13)
 
     @classmethod
     def decrypt(cls, text_content: str) -> str:
+        """
+        This is class method.
+        Decrypt parameter text_content and return decrypted string.
+        :param text_content: str.
+        :return: str
+        """
         return cls.create_new_string(text_content=text_content, char_shift=-13)
 
     @classmethod
     def create_new_string(cls, text_content: str, char_shift: int) -> str:
+        """
+        This is class method.
+        Method takes parameter text_content and shift particular letter in
+        text_content by char_shift. Then create and return new string.
+        :param text_content: str
+        :param char_shift: int
+        :return: str
+        """
         encrypted_chars = []
         for char in text_content:
             if ord(char) in UPPER_RANGE:
@@ -33,6 +63,18 @@ class CipherROT13(Cipher):
 
     @staticmethod
     def shift_char(char: str, char_shift: int, letter_a: str, letter_z: str) -> str:
+        """
+        This is static method.
+        Method takes parameter char and determines if it should be shifted.
+        Shift takes place if char is in range(ord("A"), ord("Z") + 1)
+        or in range(ord("a"), ord("z") + 1)
+        Return shifted char if it's in cipher range or return parameter char
+        :param char: str
+        :param char_shift: int
+        :param letter_a: str.
+        :param letter_z: str.
+        :return: str
+        """
         char_decimal = ord(char)
         if char_decimal in range(ord(letter_a), ord(letter_z) + 1):
             char_decimal = char_decimal + char_shift
