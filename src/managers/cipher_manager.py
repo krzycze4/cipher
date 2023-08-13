@@ -4,6 +4,7 @@ from src.ciphers.cipher_rot13 import CipherROT13
 from src.ciphers.cipher_rot47 import CipherROT47
 from src.exceptions.exceptions import OutOfRangeError, EmptyInputError
 from src.factories.text_factory import TextFactory
+from src.file_handlers.json_file_handler import JsonFileHandler
 from src.managers.manager import Manager
 from src.menus.menu import Menu
 
@@ -11,9 +12,10 @@ from src.menus.menu import Menu
 class CipherManager(Manager):
     def __init__(self):
         self.menu = Menu()
-
+        # podziel self.choice na dwa (menu oraz cipher)
         self.choice: Union[None, int] = None
         self.content_input: Union[None, str] = None
+        self.file_handler = JsonFileHandler()
         self.buffer = []
         self.menu_options = {
             1: self.crypt_text,
@@ -90,16 +92,10 @@ class CipherManager(Manager):
         return self.cipher_options.get(self.choice).decrypt(text_content=self.content_input)
 
     def save_buffer(self):
-        # zapytaj o nazwę pliku do zapisu
-        # context managers z jsonem, flaga "a"
-        # zapis
-        pass
+        self.file_handler.save_to_file(self.buffer)
 
     def load_to_buffer(self):
-        # zapytaj o nazwę pliku do zapisu
-        # context managers z jsonem, flaga "a"
-        # odczyt do buffera
-        pass
+        self.buffer += self.file_handler.load_to_buffer()
 
     def exit(self):
         exit()
