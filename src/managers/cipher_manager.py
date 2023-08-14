@@ -1,3 +1,4 @@
+from copy import copy
 from typing import Union
 
 from src.ciphers.cipher_rot13 import CipherROT13
@@ -14,7 +15,7 @@ class CipherManager(Manager):
         self.menu = Menu()
         self.choice: Union[None, int] = None
         self.content_input: Union[None, str] = None
-        self.file_handler = JsonFileHandler()
+        self.file_handler = JsonFileHandler() # FIXME
         self.buffer = []
         self.menu_options = {
             1: self.crypt_text,
@@ -60,17 +61,15 @@ class CipherManager(Manager):
         self.menu_options.get(self.choice)()
 
     def crypt_text(self) -> None:
-        status = self.status.get(self.choice)
-
+        cipher_choice = copy(self.choice)
         self.take_input_content()
         self.menu.display_cipher_menu()
         self.take_choice(limit=len(self.cipher_options))
 
+        status = self.status.get(cipher_choice)
         rot_type = str(self.cipher_options.get(self.choice))
         content = self.crypt_options.get(self.choice)()
         text = TextFactory().create_object(content=content, rot_type=rot_type, status=status)
-
-        print(text.content)
         self.buffer.append(text)
 
     def take_input_content(self):
