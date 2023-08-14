@@ -1,10 +1,6 @@
 from src.ciphers.cipher import Cipher
 
 
-UPPER_RANGE = range(ord("A"), ord("Z") + 1)
-LOWER_RANGE = range(ord("a"), ord("z") + 1)
-
-
 class CipherROT13(Cipher):
     """
     This is class CipherROT13.
@@ -16,6 +12,8 @@ class CipherROT13(Cipher):
              "N -> "A",
              "n" -> "a"
     """
+    upper_range = range(ord("A"), ord("Z") + 1)
+    lower_range = range(ord("a"), ord("z") + 1)
 
     @classmethod
     def encrypt(cls, text_content: str) -> str:
@@ -49,12 +47,12 @@ class CipherROT13(Cipher):
         """
         encrypted_chars = []
         for char in text_content:
-            if ord(char) in UPPER_RANGE:
+            if ord(char) in cls.upper_range:
                 encrypted_chars.append(cls.shift_char(char=char,
                                                       char_shift=char_shift,
                                                       letter_a="A",
                                                       letter_z="Z"))
-            elif ord(char) in LOWER_RANGE:
+            elif ord(char) in cls.lower_range:
                 encrypted_chars.append(cls.shift_char(char=char,
                                                       char_shift=char_shift,
                                                       letter_a="a",
