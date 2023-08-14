@@ -1,27 +1,71 @@
+"""
+A module to represent an abstract class of ciphers
+
+Classes:
+
+    Cipher
+
+Methods:
+
+    __str__() -> str
+    encrypt(str) -> str
+    decrypt(str) -> str
+"""
 from abc import ABC, abstractmethod
 
 
 class Cipher(ABC):
     """
-    This is Abstract Class Cipher
+    A class to represent a cipher
+
+    Methods
+    _______
+    __str__() -> None:
+        returns class name
+    encrypt(text_content: str) -> str
+        raises NotImplementedError
+    decrypt(text_content: str) -> str:
+        raises NotImplementedError
     """
     def __str__(self):
+        """
+        A method returns class name
+
+        Returns
+        _______
+        str
+            class name
+        """
         return f"{self.__class__.__name__}"
 
     @abstractmethod
-    def encrypt(self, text_content: str) -> str:
+    def encrypt(self, text_content: str):
         """
-        This is abstract method. Encrypt parameter text_content.
-        :param: text_content: str
-        :raise: NotImplementedError
+        An abstract method encrypts text
+
+        Parameters
+        __________
+        text_content: str
+            text to encrypt
+
+        Raises
+        ______
+        NotImplementedError
         """
         raise NotImplementedError
 
     @abstractmethod
-    def decrypt(self, text_content: str) -> str:
+    def decrypt(self, text_content: str):
         """
-        This is abstract method. Decrypt parameter text_content.
-        :param text_content: str
-        :return: NotImplementedError
+        An abstract method decrypts text
+
+        Parameters
+        __________
+        text_content: str
+            text to decrypt
+
+        Raises
+        ______
+        NotImplementedError
         """
         raise NotImplementedError
