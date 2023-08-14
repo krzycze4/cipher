@@ -3,13 +3,7 @@ A module to represent an abstract class of ciphers
 
 Classes:
 
-    Cipher
-
-Methods:
-
-    __str__() -> str
-    encrypt(str) -> str
-    decrypt(str) -> str
+    Cipher(ABC)
 """
 from abc import ABC, abstractmethod
 
