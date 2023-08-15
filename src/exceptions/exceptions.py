@@ -1,12 +1,17 @@
+"""
+A module to represent exceptions.
+
+Classes:
+    OutOfRangeError(Exception)
+    EmptyInputError(Exception)
+"""
+
+
 class OutOfRangeError(Exception):
-    """
-    Exception used when user choice is out of range.
-    """
+    """A class to represent an out of range exception"""
     ...
 
 
 class EmptyInputError(Exception):
-    """
-    Exception used when user input is empty.
-    """
+    """A class to represent an empty input exception"""
     ...
