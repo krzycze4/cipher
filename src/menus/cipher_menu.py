@@ -1,12 +1,13 @@
 """
-A module to represent a class Menu.
+A module to represent a class CipherMenu.
 
 Classes:
-    Menu
+    CipherMenu
 """
+from src.menus.menu import Menu
 
 
-class Menu:
+class CipherMenu(Menu):
     """
     A class to represent program menu.
 
