@@ -16,7 +16,6 @@ class AbstractFactory(ABC):
     create_object(*args: str)
         an abstract method raises NotImplementedError
     """
-
     @abstractmethod
     def create_object(self, *args):
         """
