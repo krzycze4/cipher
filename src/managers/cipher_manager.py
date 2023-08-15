@@ -1,3 +1,9 @@
+"""
+A module to represent a class CipherManager.
+
+Classes:
+    CipherManager(Manager)
+"""
 from copy import copy
 from typing import Union
 
@@ -7,15 +13,63 @@ from src.exceptions.exceptions import OutOfRangeError, EmptyInputError
 from src.factories.text_factory import TextFactory
 from src.file_handlers.json_file_handler import JsonFileHandler
 from src.managers.manager import Manager
-from src.menus.menu import Menu
+from src.menus.cipher_menu import CipherMenu
 
 
 class CipherManager(Manager):
+    """
+    A class to represent a cipher manager object.
+
+    Methods
+    _______
+    __init__(self)
+    run(self) -> None
+    take_choice(self, limit: int) -> None
+    execute(self)
+    crypt_text(self) -> None
+    take_input_content(self) -> None
+    encrypt_text(self) -> str
+    decrypt_text(self) -> str
+    save_buffer(self) -> None
+    load_to_buffer(self) -> None
+    exit(self) -> None
+
+    """
     def __init__(self):
-        self.menu = Menu()
+        """
+        A method constructs all the necessary attributes for a manager object.
+
+        Attributes
+        __________
+        self.menu = CipherMenu()
         self.choice: Union[None, int] = None
         self.content_input: Union[None, str] = None
-        self.file_handler = JsonFileHandler() # FIXME
+        self.file_handler = JsonFileHandler()
+        self.buffer = []
+        self.menu_options = {
+            1: self.crypt_text,
+            2: self.crypt_text,
+            3: self.save_buffer,
+            4: self.load_to_buffer,
+            5: self.exit
+        }
+        self.cipher_options = {
+            1: CipherROT13(),
+            2: CipherROT47()
+        }
+        self.status = {
+            1: "encrypted",
+            2: "decrypted"
+        }
+        self.crypt_options = {
+            1: self.encrypt_text,
+            2: self.decrypt_text
+        }
+        """
+        self.menu = CipherMenu()
+        self.choice: Union[None, int] = None
+        self.content_input: Union[None, str] = None
+        self.file_handler = JsonFileHandler()
         self.buffer = []
         self.menu_options = {
             1: self.crypt_text,
@@ -37,7 +91,14 @@ class CipherManager(Manager):
             2: self.decrypt_text
         }
 
-    def run(self):
+    def run(self) -> None:
+        """
+        A method runs program.
+
+        Returns
+        _______
+        None
+        """
         self.menu.display_welcome()
         while True:
             self.menu.display_main_menu()
@@ -45,6 +106,18 @@ class CipherManager(Manager):
             self.execute()
 
     def take_choice(self, limit: int) -> None:
+        """
+        A method takes user choice.
+
+        Parameters
+        __________
+        limit: int
+            inform how many options there are
+
+        Returns
+        _______
+        None
+        """
         while True:
             try:
                 choice = int(input("\nChoice: "))
@@ -57,10 +130,24 @@ class CipherManager(Manager):
                 self.choice = choice
                 break
 
-    def execute(self):
+    def execute(self) -> None:
+        """
+        A method execute chosen option in menu.
+
+        Returns
+        _______
+        None
+        """
         self.menu_options.get(self.choice)()
 
     def crypt_text(self) -> None:
+        """
+        A method create Text object and add it to self.buffer.
+
+        Returns
+        _______
+        None
+        """
         cipher_choice = copy(self.choice)
         self.take_input_content()
         self.menu.display_cipher_menu()
@@ -72,7 +159,14 @@ class CipherManager(Manager):
         text = TextFactory().create_object(content=content, rot_type=rot_type, status=status)
         self.buffer.append(text)
 
-    def take_input_content(self):
+    def take_input_content(self) -> None:
+        """
+        A method takes user's input.
+
+        Returns
+        _______
+        None
+        """
         while True:
             try:
                 user_input = input("\nText content: ")
@@ -85,16 +179,53 @@ class CipherManager(Manager):
                 break
 
     def encrypt_text(self) -> str:
+        """
+        A method returns encrypted text.
+
+        Returns
+        _______
+        str
+            encrypted text
+        """
         return self.cipher_options.get(self.choice).encrypt(text_content=self.content_input)
 
     def decrypt_text(self) -> str:
+        """
+        A method returns decrypted text.
+
+        Returns
+        _______
+        str
+            decrypted text
+        """
         return self.cipher_options.get(self.choice).decrypt(text_content=self.content_input)
 
-    def save_buffer(self):
+    def save_buffer(self) -> None:
+        """
+        A method saves self.buffer to json file.
+
+        Returns
+        _______
+        None
+        """
         self.file_handler.save_to_file(self.buffer)
 
-    def load_to_buffer(self):
+    def load_to_buffer(self) -> None:
+        """
+        A method loads json file to self.buffer.
+
+        Returns
+        _______
+        None
+        """
         self.buffer += self.file_handler.prepare_data_to_load_to_buffer()
 
-    def exit(self):
+    def exit(self) -> None:
+        """
+        A method exits the program.
+
+        Returns
+        _______
+        None
+        """
         exit()
