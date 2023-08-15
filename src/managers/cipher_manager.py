@@ -94,7 +94,7 @@ class CipherManager(Manager):
         self.file_handler.save_to_file(self.buffer)
 
     def load_to_buffer(self):
-        self.buffer += self.file_handler.load_to_buffer()
+        self.buffer += self.file_handler.prepare_data_to_load_to_buffer()
 
     def exit(self):
         exit()
