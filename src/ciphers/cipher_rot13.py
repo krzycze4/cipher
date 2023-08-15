@@ -86,14 +86,14 @@ class CipherROT13(Cipher):
         for char in text_content:
             if ord(char) in cls.upper_range:
                 crypted_chars.append(cls.shift_char(char=char,
-                                                      char_shift=char_shift,
-                                                      letter_a="A",
-                                                      letter_z="Z"))
+                                                    char_shift=char_shift,
+                                                    letter_a="A",
+                                                    letter_z="Z"))
             elif ord(char) in cls.lower_range:
                 crypted_chars.append(cls.shift_char(char=char,
-                                                      char_shift=char_shift,
-                                                      letter_a="a",
-                                                      letter_z="z"))
+                                                    char_shift=char_shift,
+                                                    letter_a="a",
+                                                    letter_z="z"))
         return "".join(crypted_chars)
 
     @staticmethod
