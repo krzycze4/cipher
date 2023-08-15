@@ -23,17 +23,27 @@ class CipherManager(Manager):
     Methods
     _______
     __init__(self)
+        constructs all the necessary attributes for a manager object
     run(self) -> None
+        runs program
     take_choice(self, limit: int) -> None
+        takes user choice
     execute(self)
+        executes chosen option in menu
     crypt_text(self) -> None
+        creates Text object and add it to self.buffer
     take_input_content(self) -> None
+        takes user's input
     encrypt_text(self) -> str
+        returns encrypted text
     decrypt_text(self) -> str
+        returns decrypted text
     save_buffer(self) -> None
+        saves self.buffer to json file
     load_to_buffer(self) -> None
+        loads json file to self.buffer
     exit(self) -> None
-
+        exits the program
     """
     def __init__(self):
         """
@@ -132,7 +142,7 @@ class CipherManager(Manager):
 
     def execute(self) -> None:
         """
-        A method execute chosen option in menu.
+        A method executes chosen option in menu.
 
         Returns
         _______
@@ -142,7 +152,7 @@ class CipherManager(Manager):
 
     def crypt_text(self) -> None:
         """
-        A method create Text object and add it to self.buffer.
+        A method creates Text object and add it to self.buffer.
 
         Returns
         _______
