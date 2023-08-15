@@ -41,7 +41,6 @@ class JsonFileHandler(FileHandler):
             json data
         self.texts: List[Text] = []
             list of objects Text
-
         """
         self.path: Union[None, str] = None
         self.json_data: Union[None, List[Dict[str, str]]] = None
