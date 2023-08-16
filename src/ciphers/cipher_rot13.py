@@ -1,3 +1,4 @@
+# flake8: noqa: E501
 """
 A module to represent a class of cipher ROT13.
 "Shift" means shift in ASCII encoding system.
@@ -5,6 +6,7 @@ A module to represent a class of cipher ROT13.
 Classes:
     CipherROT13(Cipher)
 """
+
 from src.ciphers.cipher import Cipher
 
 
@@ -28,6 +30,7 @@ class CipherROT13(Cipher):
     shift_char(char: str, char_shift: int, letter_a: str, letter_z: str) -> str
         a static method returns shifted character
     """
+
     upper_range = range(ord("A"), ord("Z") + 1)
     lower_range = range(ord("a"), ord("z") + 1)
 
@@ -85,15 +88,17 @@ class CipherROT13(Cipher):
         crypted_chars = []
         for char in text_content:
             if ord(char) in cls.upper_range:
-                crypted_chars.append(cls.shift_char(char=char,
-                                                    char_shift=char_shift,
-                                                    letter_a="A",
-                                                    letter_z="Z"))
+                crypted_chars.append(
+                    cls.shift_char(
+                        char=char, char_shift=char_shift, letter_a="A", letter_z="Z"
+                    )
+                )
             elif ord(char) in cls.lower_range:
-                crypted_chars.append(cls.shift_char(char=char,
-                                                    char_shift=char_shift,
-                                                    letter_a="a",
-                                                    letter_z="z"))
+                crypted_chars.append(
+                    cls.shift_char(
+                        char=char, char_shift=char_shift, letter_a="a", letter_z="z"
+                    )
+                )
         return "".join(crypted_chars)
 
     @staticmethod
