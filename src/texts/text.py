@@ -1,4 +1,6 @@
 """A module to represent a dataclass Text."""
+from __future__ import annotations
+
 from dataclasses import dataclass
 from typing import Dict
 
@@ -10,7 +12,7 @@ class Text:
     status: str
 
     @classmethod
-    def create_from_dict(cls, text_data: Dict) -> object:
+    def create_from_dict(cls, text_data: Dict) -> Text:
         content = text_data.get("content")
         rot_type = text_data.get("rot_type")
         status = text_data.get("status")
