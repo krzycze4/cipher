@@ -1,18 +1,11 @@
-"""
-A module to execute the whole project.
-
-Functions:
-    main()
-"""
+"""A module to execute the whole project."""
 from src.managers.cipher_manager import CipherManager
 
 
 def main():
-    """A method starts cipher project"""
     manager = CipherManager()
     manager.run()
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()
-    
