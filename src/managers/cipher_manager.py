@@ -1,19 +1,17 @@
-"""
-A module to represent a class CipherManager.
-
-Classes:
-    CipherManager(Manager)
-"""
+# flake8: noqa: E501
+"""A module to represent a class CipherManager"""
 from copy import copy
-from typing import Union
+from typing import Union, Dict, Callable
 
+from src.buffers.buffer import Buffer
+from src.ciphers.cipher import Cipher
 from src.ciphers.cipher_rot13 import CipherROT13
 from src.ciphers.cipher_rot47 import CipherROT47
 from src.exceptions.exceptions import OutOfRangeError, EmptyInputError
-from src.factories.text_factory import TextFactory
 from src.file_handlers.json_file_handler import JsonFileHandler
 from src.managers.manager import Manager
 from src.menus.cipher_menu import CipherMenu
+from src.texts.text import Text
 
 
 class CipherManager(Manager):
@@ -45,60 +43,25 @@ class CipherManager(Manager):
     exit(self) -> None
         exits the program
     """
-    def __init__(self):
-        """
-        A method constructs all the necessary attributes for a manager object.
 
-        Attributes
-        __________
+    def __init__(self):
         self.menu = CipherMenu()
         self.choice: Union[None, int] = None
         self.content_input: Union[None, str] = None
         self.file_handler = JsonFileHandler()
-        self.buffer = []
-        self.menu_options = {
+        self.buffer = Buffer()
+        self.menu_options: Dict[int, Callable] = {
             1: self.crypt_text,
             2: self.crypt_text,
             3: self.save_buffer,
             4: self.load_to_buffer,
-            5: self.exit
+            5: self.exit,
         }
-        self.cipher_options = {
-            1: CipherROT13(),
-            2: CipherROT47()
-        }
-        self.status = {
-            1: "encrypted",
-            2: "decrypted"
-        }
-        self.crypt_options = {
+        self.cipher_options: Dict[int, Cipher] = {1: CipherROT13(), 2: CipherROT47()}
+        self.status: Dict[int, str] = {1: "encrypted", 2: "decrypted"}
+        self.crypt_options: Dict[int, Callable] = {
             1: self.encrypt_text,
-            2: self.decrypt_text
-        }
-        """
-        self.menu = CipherMenu()
-        self.choice: Union[None, int] = None
-        self.content_input: Union[None, str] = None
-        self.file_handler = JsonFileHandler()
-        self.buffer = []
-        self.menu_options = {
-            1: self.crypt_text,
-            2: self.crypt_text,
-            3: self.save_buffer,
-            4: self.load_to_buffer,
-            5: self.exit
-        }
-        self.cipher_options = {
-            1: CipherROT13(),
-            2: CipherROT47()
-        }
-        self.status = {
-            1: "encrypted",
-            2: "decrypted"
-        }
-        self.crypt_options = {
-            1: self.encrypt_text,
-            2: self.decrypt_text
+            2: self.decrypt_text,
         }
 
     def run(self) -> None:
@@ -163,11 +126,11 @@ class CipherManager(Manager):
         self.menu.display_cipher_menu()
         self.take_choice(limit=len(self.cipher_options))
 
-        status = self.status.get(cipher_choice)
-        rot_type = str(self.cipher_options.get(self.choice))
-        content = self.crypt_options.get(self.choice)()
-        text = TextFactory().create_object(content=content, rot_type=rot_type, status=status)
-        self.buffer.append(text)
+        status: str = self.status.get(cipher_choice)
+        rot_type: str = str(self.cipher_options.get(self.choice))
+        content: str = self.crypt_options.get(self.choice)()
+        text = Text(content=content, rot_type=rot_type, status=status)
+        self.buffer.add(text)
 
     def take_input_content(self) -> None:
         """
@@ -197,7 +160,9 @@ class CipherManager(Manager):
         str
             encrypted text
         """
-        return self.cipher_options.get(self.choice).encrypt(text_content=self.content_input)
+        return self.cipher_options.get(self.choice).encrypt(
+            text_content=self.content_input
+        )
 
     def decrypt_text(self) -> str:
         """
@@ -208,7 +173,9 @@ class CipherManager(Manager):
         str
             decrypted text
         """
-        return self.cipher_options.get(self.choice).decrypt(text_content=self.content_input)
+        return self.cipher_options.get(self.choice).decrypt(
+            text_content=self.content_input
+        )
 
     def save_buffer(self) -> None:
         """
@@ -218,7 +185,8 @@ class CipherManager(Manager):
         _______
         None
         """
-        self.file_handler.save_to_file(self.buffer)
+        self.file_handler.save_to_file(self.buffer.list)
+        self.buffer.clear()
 
     def load_to_buffer(self) -> None:
         """
@@ -228,7 +196,9 @@ class CipherManager(Manager):
         _______
         None
         """
-        self.buffer += self.file_handler.prepare_data_to_load_to_buffer()
+        self.file_handler.load_from_file()
+        for json_text in self.file_handler.json_data:
+            self.buffer.add(Text.create_from_dict(json_text))
 
     def exit(self) -> None:
         """
