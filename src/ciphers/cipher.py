@@ -1,10 +1,4 @@
-"""
-A module to represent an abstract class of ciphers
-
-Classes:
-
-    Cipher(ABC)
-"""
+"""A module to represent an abstract class Cipher"""
 from abc import ABC, abstractmethod
 
 
@@ -21,7 +15,8 @@ class Cipher(ABC):
     decrypt(text_content: str) -> str:
         raises NotImplementedError
     """
-    def __str__(self):
+
+    def __str__(self) -> str:
         """
         A method returns class name
 
@@ -41,10 +36,6 @@ class Cipher(ABC):
         __________
         text_content: str
             text to encrypt
-
-        Raises
-        ______
-        NotImplementedError
         """
         raise NotImplementedError
 
@@ -57,9 +48,5 @@ class Cipher(ABC):
         __________
         text_content: str
             text to decrypt
-
-        Raises
-        ______
-        NotImplementedError
         """
         raise NotImplementedError
