@@ -11,4 +11,8 @@ repos:
 -   repo: https://github.com/PyCQA/bandit
     rev: 1.7.5
     hooks:
-    - id: bandit
+    -    id: bandit
+-   repo: https://github.com/PyCQA/flake8
+    rev: 6.1.0
+    hooks:
+    -    id: flake8
