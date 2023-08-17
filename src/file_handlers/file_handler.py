@@ -1,46 +1,24 @@
-"""
-A module to represent an abstract class of file handler.
-
-Classes:
-    FileHandler(ABC)
-"""
+"""A module to represent an abstract class of file handler"""
 from abc import ABC, abstractmethod
+from typing import List
+
+from src.texts.text import Text
 
 
 class FileHandler(ABC):
-    """
-    An abstract class to represent a file handler.
-
-    Methods
-    _______
-    save_to_file(*args)
-        an abstract method raises NotImplementedError
-    load_from_file(*args)
-        an abstract method raises NotImplementedError
-    """
     @abstractmethod
-    def save_to_file(self, *args):
+    def save_to_file(self, buffer: List[Text]):
         """
         An abstract method raises NotImplementedError.
 
         Parameters
         __________
-        *args
-            arguments to save to file
-
-        Raises
-        ______
-        NotImplementedError
+        buffer: List[Text]
+            list of Text objects to save to file
         """
         raise NotImplementedError
 
     @abstractmethod
     def load_from_file(self):
-        """
-        An abstract method raises NotImplementedError.
-
-        Raises
-        ______
-        NotImplementedError
-        """
+        """An abstract method raises NotImplementedError."""
         raise NotImplementedError
