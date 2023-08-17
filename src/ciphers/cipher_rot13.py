@@ -2,35 +2,12 @@
 """
 A module to represent a class of cipher ROT13.
 "Shift" means shift in ASCII encoding system.
-
-Classes:
-    CipherROT13(Cipher)
 """
 
 from src.ciphers.cipher import Cipher
 
 
 class CipherROT13(Cipher):
-    """
-    A class to represent a cipher ROT13.
-
-    Variables
-    _______________
-    upper_range
-    lower_range
-
-    Methods
-    _______
-    encrypt(text_content: str) -> str
-        a class method returns encrypted text
-    decrypt(text_content: str) -> str
-        a class method returns decrypted text
-    create_new_string(text_content: str, char_shift: int) -> str
-        a class method returns crypted or decrypted text
-    shift_char(char: str, char_shift: int, letter_a: str, letter_z: str) -> str
-        a static method returns shifted character
-    """
-
     upper_range = range(ord("A"), ord("Z") + 1)
     lower_range = range(ord("a"), ord("z") + 1)
 
@@ -105,7 +82,7 @@ class CipherROT13(Cipher):
     def shift_char(char: str, char_shift: int, letter_a: str, letter_z: str) -> str:
         """
         A static method shifts character in text_content with declared char_shift if
-        it's in range between letter_a and letter_b included.
+        it's in range between letter_a and letter_z included.
 
         Parameters
         __________
