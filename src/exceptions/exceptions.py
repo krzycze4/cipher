@@ -1,10 +1,4 @@
-"""
-A module to represent exceptions.
-
-Classes:
-    OutOfRangeError(Exception)
-    EmptyInputError(Exception)
-"""
+"""A module to represent exceptions."""
 
 
 class OutOfRangeError(Exception):
