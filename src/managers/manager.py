@@ -1,41 +1,14 @@
-"""
-A module to represent an abstract class Manager.
-
-Classes:
-    Manager(ABC)
-"""
+"""A module to represent an abstract class Manager."""
 from abc import ABC, abstractmethod
 
 
 class Manager(ABC):
-    """
-    An abstract class to represent a manager.
-
-    Methods
-    _______
-    run()
-        raises NotImplementedError
-    exit()
-        raises NotImplementedError
-    """
     @abstractmethod
     def run(self):
-        """
-        An abstract method raises NotImplementedError
-
-        Raises
-        ______
-        NotImplementedError
-        """
+        """An abstract method runs program"""
         raise NotImplementedError
 
     @abstractmethod
     def exit(self):
-        """
-        An abstract method raises NotImplementedError
-
-        Raises
-        ______
-        NotImplementedError
-        """
+        """An abstract method exits program"""
         raise NotImplementedError
