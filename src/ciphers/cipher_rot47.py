@@ -1,32 +1,11 @@
-"""
-A module to represent a class of cipher ROT47.
+# flake8: noqa: E501
+"""A module to represent a class of cipher ROT47.
 "Shift" means shift in ASCII encoding system.
-
-Classes:
-    CipherROT47(Cipher)
 """
 from src.ciphers.cipher import Cipher
 
 
 class CipherROT47(Cipher):
-    """
-    A class to represent a cipher ROT47.
-
-    Variables
-    _______________
-    cipher_range
-
-    Methods
-    _______
-    encrypt(text_content: str) -> str
-        a class method returns encrypted text
-    decrypt(text_content: str) -> str
-        a class method returns decrypted text
-    create_new_string(text_content: str, char_shift: int) -> str
-        a class method returns crypted or decrypted text
-    shift_char(char: str, char_shift: int) -> str
-        a static method returns shifted character
-    """
     cipher_range = range(ord("!"), ord("~") + 1)
 
     @classmethod
