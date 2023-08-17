@@ -20,8 +20,6 @@ class CipherManager(Manager):
 
     Methods
     _______
-    __init__(self)
-        constructs all the necessary attributes for a manager object
     run(self) -> None
         runs program
     take_choice(self, limit: int) -> None
@@ -37,7 +35,7 @@ class CipherManager(Manager):
     decrypt_text(self) -> str
         returns decrypted text
     save_buffer(self) -> None
-        saves self.buffer to json file
+        saves self.buffer to json file and clear it
     load_to_buffer(self) -> None
         loads json file to self.buffer
     exit(self) -> None
@@ -65,13 +63,7 @@ class CipherManager(Manager):
         }
 
     def run(self) -> None:
-        """
-        A method runs program.
-
-        Returns
-        _______
-        None
-        """
+        """A method runs program."""
         self.menu.display_welcome()
         while True:
             self.menu.display_main_menu()
@@ -85,11 +77,7 @@ class CipherManager(Manager):
         Parameters
         __________
         limit: int
-            inform how many options there are
-
-        Returns
-        _______
-        None
+            set right edge of the range
         """
         while True:
             try:
@@ -104,23 +92,11 @@ class CipherManager(Manager):
                 break
 
     def execute(self) -> None:
-        """
-        A method executes chosen option in menu.
-
-        Returns
-        _______
-        None
-        """
+        """A method executes chosen option in menu."""
         self.menu_options.get(self.choice)()
 
     def crypt_text(self) -> None:
-        """
-        A method creates Text object and add it to self.buffer.
-
-        Returns
-        _______
-        None
-        """
+        """A method creates Text object and add it to self.buffer."""
         cipher_choice = copy(self.choice)
         self.take_input_content()
         self.menu.display_cipher_menu()
@@ -133,13 +109,7 @@ class CipherManager(Manager):
         self.buffer.add(text)
 
     def take_input_content(self) -> None:
-        """
-        A method takes user's input.
-
-        Returns
-        _______
-        None
-        """
+        """A method takes user's input."""
         while True:
             try:
                 user_input = input("\nText content: ")
@@ -178,34 +148,16 @@ class CipherManager(Manager):
         )
 
     def save_buffer(self) -> None:
-        """
-        A method saves self.buffer to json file.
-
-        Returns
-        _______
-        None
-        """
+        """A method saves self.buffer to json file and clear it."""
         self.file_handler.save_to_file(self.buffer.list)
         self.buffer.clear()
 
     def load_to_buffer(self) -> None:
-        """
-        A method loads json file to self.buffer.
-
-        Returns
-        _______
-        None
-        """
+        """A method loads json file to self.buffer."""
         self.file_handler.load_from_file()
         for json_text in self.file_handler.json_data:
             self.buffer.add(Text.create_from_dict(json_text))
 
     def exit(self) -> None:
-        """
-        A method exits the program.
-
-        Returns
-        _______
-        None
-        """
+        """A method exits the program."""
         exit()
