@@ -3,19 +3,6 @@ from abc import ABC, abstractmethod
 
 
 class Cipher(ABC):
-    """
-    A class to represent a cipher
-
-    Methods
-    _______
-    __str__() -> None:
-        returns class name
-    encrypt(text_content: str) -> str
-        raises NotImplementedError
-    decrypt(text_content: str) -> str:
-        raises NotImplementedError
-    """
-
     def __str__(self) -> str:
         """
         A method returns class name
