@@ -1,5 +1,5 @@
 # flake8: noqa: E501
-"""A module to represent a JSON file handler."""
+"""A module to represent class JsonFileHandler"""
 import json
 from typing import List, Union, Dict
 
@@ -8,36 +8,7 @@ from src.texts.text import Text
 
 
 class JsonFileHandler(FileHandler):
-    """
-    A class to represent a JSON file handler.
-
-    Methods
-    _______
-    __init__()
-        constructs all the necessary attributes for the file handler object
-    save_to_file(buffer: List[Text]) -> None
-        saves buffer to json
-    load_from_file() -> None
-        loads json data from file to list
-    prepare_data_to_load_to_buffer() -> Union[None, List[Text]]
-        prepare json data to load to buffer
-    create_list_of_texts()
-        creates list of texts object from json data
-    """
-
     def __init__(self):
-        """
-        A method constructs all the necessary attributes for the file handler object.
-
-        Attributes
-        __________
-        self.path: Union[None, str]
-            path of the json file
-        self.json_data: Union[None, List[Dict[str, str]]] = None
-            json data
-        self.texts: List[Text] = []
-            list of objects Text
-        """
         self.path: Union[None, str] = None
         self.json_data: Union[None, List[Dict[str, str]]] = None
         self.texts: List[object] = []
@@ -50,10 +21,6 @@ class JsonFileHandler(FileHandler):
         __________
         buffer: List[Text]
             list of Text objects
-
-        Returns
-        _______
-        None
         """
         self.load_from_file()
 
@@ -68,13 +35,7 @@ class JsonFileHandler(FileHandler):
             json.dump(self.json_data, file, indent=4)
 
     def load_from_file(self) -> None:
-        """
-        A method loads json data from file to list.
-
-        Returns
-        _______
-        None
-        """
+        """A method loads json data from file to list."""
         file_name = input("File name: ")
         self.path = (
             file_path
