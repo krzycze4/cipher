@@ -81,7 +81,7 @@ class TestCipherROT13:
 
     @pytest.mark.create_new_string
     @pytest.mark.parametrize("text_content, char_shift", [("abc", 13)])
-    def test_should_return_string_when_create_new_string_execute(
+    def test_should_return_string_when_create_new_string_execute_lowercase(
         self, text_content, char_shift, cipher, mocker
     ):
         mocker.patch(
@@ -93,7 +93,7 @@ class TestCipherROT13:
 
     @pytest.mark.create_new_string
     @pytest.mark.parametrize("text_content, char_shift", [("ABC", 13)])
-    def test_should_return_string_when_create_new_string_execute(
+    def test_should_return_string_when_create_new_string_execute_uppercase(
         self, text_content, char_shift, cipher, mocker
     ):
         mocker.patch(
@@ -105,7 +105,7 @@ class TestCipherROT13:
 
     @pytest.mark.encrypt
     @pytest.mark.parametrize("text_content", ["abc"])
-    def test_should_return_string_when_decrypt_text(self, cipher, mocker, text_content):
+    def test_should_return_string_when_encrypt_text(self, cipher, mocker, text_content):
         mocker.patch(
             "src.ciphers.cipher_rot13.CipherROT13.create_new_string", return_value="nop"
         )
