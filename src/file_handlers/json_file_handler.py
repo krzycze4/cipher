@@ -37,12 +37,9 @@ class JsonFileHandler(FileHandler):
     def load_from_file(self) -> None:
         """A method loads json data from file to list."""
         file_name = input("File name: ")
-        self.path = (
-            file_path
-        ) = rf"C:\Users\komputer Synka\Documents\IT\devMentoring\cipher\src\files\{file_name}.json"
-
+        self.path = rf"C:\Users\komputer Synka\Documents\IT\devMentoring\cipher\src\files\{file_name}.json"
         try:
-            with open(file_path, "r") as jsonfile:
+            with open(self.path, "r") as jsonfile:
                 self.json_data = json.load(jsonfile)
         except (FileNotFoundError, json.decoder.JSONDecodeError):
             self.json_data = []
