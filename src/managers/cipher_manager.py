@@ -43,7 +43,7 @@ class CipherManager(Manager):
     """
 
     def __init__(self):
-        self.menu = CipherMenu()
+        # self.menu = CipherMenu()
         self.choice: Union[None, int] = None
         self.content_input: Union[None, str] = None
         self.file_handler = JsonFileHandler()
@@ -64,9 +64,9 @@ class CipherManager(Manager):
 
     def run(self) -> None:
         """A method runs program."""
-        self.menu.display_welcome()
+        CipherMenu().display_welcome()
         while True:
-            self.menu.display_main_menu()
+            CipherMenu().display_main_menu()
             self.take_choice(limit=len(self.menu_options))
             self.execute()
 
@@ -99,7 +99,7 @@ class CipherManager(Manager):
         """A method creates Text object and add it to self.buffer."""
         cipher_choice = copy(self.choice)
         self.take_input_content()
-        self.menu.display_cipher_menu()
+        CipherMenu().display_cipher_menu()
         self.take_choice(limit=len(self.cipher_options))
 
         status: str = self.status.get(cipher_choice)
