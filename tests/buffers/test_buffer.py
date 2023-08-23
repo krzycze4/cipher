@@ -5,7 +5,6 @@ from src.buffers.buffer import Buffer
 
 
 class TestBuffer:
-    @pytest.fixture
     def setup_method(self):
         self.buffer = Buffer()
 
