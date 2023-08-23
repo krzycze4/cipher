@@ -19,7 +19,7 @@ class TestBuffer:
     ):
         len_before_add = len(buffer.list)
         buffer.add(mocked_text)
-        assert len_before_add + 1 == len(buffer.list)  # nosec
+        assert len_before_add + 1 == len(buffer.list)
 
     @pytest.mark.add
     def test_should_check_len_list_when_add_twice_to_empty_list(
@@ -28,7 +28,7 @@ class TestBuffer:
         len_before_add = len(buffer.list)
         buffer.add(mocked_text)
         buffer.add(mocked_text)
-        assert len_before_add + 2 == len(buffer.list)  # nosec
+        assert len_before_add + 2 == len(buffer.list)
 
     @pytest.mark.add
     def test_should_check_len_list_when_add_to_not_empty_list(
@@ -37,17 +37,17 @@ class TestBuffer:
         buffer.list = [mocked_text, mocked_text]
         len_before_add = len(buffer.list)
         buffer.add(mocked_text)
-        assert len_before_add + 1 == len(buffer.list)  # nosec
+        assert len_before_add + 1 == len(buffer.list)
 
     @pytest.mark.clear
     def test_should_check_len_list_when_clear_empty_list(self, buffer):
         len_before_clear = len(buffer.list)
         buffer.clear()
-        assert len_before_clear == len(buffer.list)  # nosec
+        assert len_before_clear == len(buffer.list)
 
     @pytest.mark.clear
     def test_should_check_len_list_when_clear_not_empty_list(self, buffer, mocked_text):
         buffer.list = [mocked_text, mocked_text]
         len_before_clear = len(buffer.list)
         buffer.clear()
-        assert len_before_clear - 2 == len(buffer.list)  # nosec
+        assert len_before_clear - 2 == len(buffer.list)
