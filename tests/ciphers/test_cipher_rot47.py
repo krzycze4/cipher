@@ -13,6 +13,7 @@ class TestCipherROT13:
     def test_should_return_shifted_char_plus_47_when_shift_char_between_exclamation_point_and_upper_o(
         self, char, char_shift=47
     ):
+        """Checks if cipher shifts ascii characters plus 47 (range: !-O)"""
         shifted_char = self.cipher.shift_char(char, char_shift)
         assert shifted_char == chr(ord(char) + char_shift)
 
@@ -21,6 +22,7 @@ class TestCipherROT13:
     def test_should_return_shifted_char_plus_47_when_shift_char_between_upper_p_and_tilde(
         self, char, char_shift=47
     ):
+        """Checks if cipher shifts ascii characters plus 47 (range: P-~)"""
         shifted_char = self.cipher.shift_char(char, char_shift)
         assert shifted_char == chr(ord(char) + char_shift - (ord("~") - ord("!")) - 1)
 
@@ -29,6 +31,7 @@ class TestCipherROT13:
     def test_should_return_shifted_char_minus_47_when_shift_char_between_exclamation_point_and_upper_o(
         self, char, char_shift=-47
     ):
+        """Checks if cipher shifts ascii characters minus 47 (range: !-O)"""
         shifted_char = self.cipher.shift_char(char, char_shift)
         assert shifted_char == chr(ord(char) + char_shift + (ord("~") - ord("!")) + 1)
 
@@ -37,6 +40,7 @@ class TestCipherROT13:
     def test_should_return_shifted_char_plus_47_when_shift_char_between_upper_p_and_tilde(
         self, char, char_shift=-47
     ):
+        """Checks if cipher shifts ascii characters minus 47 (range: P-~)"""
         shifted_char = self.cipher.shift_char(char, char_shift)
         assert shifted_char == chr(ord(char) + char_shift)
 
@@ -44,6 +48,7 @@ class TestCipherROT13:
     def test_should_return_string_when_create_new_string_execute(
         self, mocker, text_content="abc", char_shift=47
     ):
+        """Checks if correctly join characters into one string"""
         mocker.patch(
             "src.ciphers.cipher_rot47.CipherROT47.shift_char",
             side_effect=["2", "3", "4"],
@@ -53,6 +58,7 @@ class TestCipherROT13:
 
     @pytest.mark.encrypt
     def test_should_return_string_when_decrypt_text(self, mocker, text_content="abc"):
+        """Checks if returns correct string"""
         mocker.patch(
             "src.ciphers.cipher_rot47.CipherROT47.create_new_string", return_value="234"
         )
@@ -61,6 +67,7 @@ class TestCipherROT13:
 
     @pytest.mark.decrypt
     def test_should_return_string_when_decrypt_text(self, mocker, text_content="234"):
+        """Checks if returns correct string"""
         mocker.patch(
             "src.ciphers.cipher_rot47.CipherROT47.create_new_string", return_value="abc"
         )
