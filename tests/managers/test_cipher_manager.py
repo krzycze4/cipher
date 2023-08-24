@@ -1,3 +1,4 @@
+# flake8: noqa E501
 import pytest
 
 from src.managers.cipher_manager import CipherManager
@@ -11,6 +12,7 @@ class TestCipherManager:
 
     @pytest.mark.run
     def test_should_do_while_loop_once(self, mocker):
+        """Checks if while loop is doing once after when user's input is in particular range"""
         mocker.patch("src.menus.cipher_menu.CipherMenu.display_welcome")
         mocker.patch("src.menus.cipher_menu.CipherMenu.display_main_menu")
         mocker.patch("src.managers.cipher_manager.CipherManager.take_choice")
@@ -26,6 +28,7 @@ class TestCipherManager:
 
     @pytest.mark.run
     def test_should_do_while_loop_twice(self, mocker):
+        """Checks if while loop is doing twice - first when user's input is not in particular range and second when it's in range"""
         mocker.patch("src.menus.cipher_menu.CipherMenu.display_welcome")
         mocker.patch("src.menus.cipher_menu.CipherMenu.display_main_menu")
         mocker.patch("src.managers.cipher_manager.CipherManager.take_choice")
@@ -44,6 +47,7 @@ class TestCipherManager:
     def test_should_set_self_choice_when_self_first_out_of_range_then_in_range(
         self, mocker, limit=2
     ):
+        """Checks if while is doing twice - first when user's input is out of range and second one when it is in range"""
         mocker.patch("builtins.input", side_effect=[limit + 1, limit])
         self.manager.take_choice(limit=limit)
         assert self.manager.choice == limit
@@ -52,6 +56,7 @@ class TestCipherManager:
     def test_should_set_self_choice_when_self_first_wrong_type_then_correct(
         self, mocker, limit=2
     ):
+        """Checks if while is doing twice - first when user's input is not an integer and second one when it is in range"""
         mocker.patch("builtins.input", side_effect=["string", limit])
         self.manager.take_choice(limit=limit)
         assert self.manager.choice == limit
@@ -59,6 +64,7 @@ class TestCipherManager:
     @pytest.mark.execute
     @pytest.mark.parametrize("choice", [1, 2])
     def test_should_call_crypt_text_when_choice_is_1_or_2(self, mocker, choice):
+        """Checks if executes crypt_text after getting input 1 or 2"""
         mocker.patch("src.managers.cipher_manager.CipherManager.crypt_text")
         manager = CipherManager()
         manager.choice = choice
@@ -67,6 +73,7 @@ class TestCipherManager:
 
     @pytest.mark.execute
     def test_should_call_save_buffer_when_choice_is_3(self, mocker, choice=3):
+        """Checks if executes save_buffer after getting input 3"""
         mocker.patch("src.managers.cipher_manager.CipherManager.save_buffer")
         manager = CipherManager()
         manager.choice = choice
@@ -75,6 +82,7 @@ class TestCipherManager:
 
     @pytest.mark.execute
     def test_should_call_load_to_buffer_when_choice_is_4(self, mocker, choice=4):
+        """Checks if executes load_to_buffer after getting input 4"""
         mocker.patch("src.managers.cipher_manager.CipherManager.load_to_buffer")
         manager = CipherManager()
         manager.choice = choice
@@ -82,7 +90,8 @@ class TestCipherManager:
         assert manager.load_to_buffer.call_count == 1
 
     @pytest.mark.execute
-    def test_should_call_load_to_buffer_when_choice_is_5(self, mocker, choice=5):
+    def test_should_call_exit_when_choice_is_5(self, mocker, choice=5):
+        """Checks if executes exit after getting input 5"""
         mocker.patch("src.managers.cipher_manager.CipherManager.exit")
         manager = CipherManager()
         manager.choice = choice
@@ -91,6 +100,7 @@ class TestCipherManager:
 
     @pytest.mark.exit
     def test_should_count_call_exit_when_exit_execute(self, mocker):
+        """Checks if exits the program after execute exit method"""
         mocker.patch("builtins.exit")
         manager = CipherManager()
         manager.exit()
@@ -98,6 +108,7 @@ class TestCipherManager:
 
     @pytest.mark.crypt_text
     def test_should_add_crypted_text_to_buffer(self, mocker):
+        """Checks if adds correct text object to buffer list"""
         mocker.patch("copy.copy", return_value=0)
         mocker.patch("src.managers.cipher_manager.CipherManager.take_input_content")
         mocker.patch("src.managers.cipher_manager.CipherManager.encrypt_text")
@@ -114,6 +125,7 @@ class TestCipherManager:
 
     @pytest.mark.take_input_content
     def test_should_set_content_input_when_input_is_not_only_whitespaces(self, mocker):
+        """Checks if while loop is doing once - input is not only whitespaces and if not set it to content"""
         mocker.patch("builtins.input", return_value="123")
         self.manager.take_input_content()
         assert self.manager.content_input == "123"
@@ -122,12 +134,14 @@ class TestCipherManager:
     def test_should_set_content_input_when_input_is_whitespaces_and_then_not(
         self, mocker
     ):
+        """Checks if while loop is doing twice, first when input is only whitespace and second when it's not"""
         mocker.patch("builtins.input", side_effect=[" ", "123"])
         self.manager.take_input_content()
         assert self.manager.content_input == "123"
 
     @pytest.mark.encrypt_text
     def test_should_return_string_when_encrypt_text_execute(self, mocker):
+        """Checks if returns correct string"""
         mocker.patch("src.ciphers.cipher_rot13.CipherROT13.encrypt", return_value="123")
         self.manager.choice = 1
         assert self.manager.encrypt_text() == "123"
@@ -137,6 +151,7 @@ class TestCipherManager:
 
     @pytest.mark.decrypt_text
     def test_should_return_string_when_decrypt_text_execute(self, mocker):
+        """Checks if returns correct string"""
         mocker.patch("src.ciphers.cipher_rot13.CipherROT13.decrypt", return_value="123")
         self.manager.choice = 1
         assert self.manager.decrypt_text() == "123"
@@ -146,6 +161,7 @@ class TestCipherManager:
 
     @pytest.mark.save_buffer
     def test_should_clear_buffer_list_when_save_buffer_to_file(self, mocker):
+        """Checks if method clears buffer"""
         text = mocker.patch("src.texts.text.Text")
         self.manager.buffer.list = [text, text]
         mocker.patch("src.file_handlers.json_file_handler.JsonFileHandler.save_to_file")
@@ -154,6 +170,7 @@ class TestCipherManager:
 
     @pytest.mark.load_to_buffer
     def test_should_add_text_objects_to_buffer(self, mocker):
+        """Checks if method loads in correct form data from file to buffer"""
         mocker.patch(
             "src.file_handlers.json_file_handler.JsonFileHandler.load_from_file"
         )
