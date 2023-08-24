@@ -8,8 +8,8 @@ from src.ciphers.cipher import Cipher
 
 
 class CipherROT13(Cipher):
-    upper_range = range(ord("A"), ord("Z") + 1)
-    lower_range = range(ord("a"), ord("z") + 1)
+    UPPER_RANGE = range(ord("A"), ord("Z") + 1)
+    LOWER_RANGE = range(ord("a"), ord("z") + 1)
 
     @classmethod
     def encrypt(cls, text_content: str) -> str:
@@ -64,13 +64,13 @@ class CipherROT13(Cipher):
         """
         crypted_chars = []
         for char in text_content:
-            if ord(char) in cls.upper_range:
+            if ord(char) in cls.UPPER_RANGE:
                 crypted_chars.append(
                     cls.shift_char(
                         char=char, char_shift=char_shift, letter_a="A", letter_z="Z"
                     )
                 )
-            elif ord(char) in cls.lower_range:
+            elif ord(char) in cls.LOWER_RANGE:
                 crypted_chars.append(
                     cls.shift_char(
                         char=char, char_shift=char_shift, letter_a="a", letter_z="z"
