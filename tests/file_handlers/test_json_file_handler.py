@@ -1,3 +1,4 @@
+# flake8: noqa e501
 import pytest
 
 from src.file_handlers.json_file_handler import JsonFileHandler
@@ -15,6 +16,7 @@ class TestJsonFileHandler:
     def test_should_load_correct_json_data_to_list_from_file(
         self, mocker, mocked_correct_json_data
     ):
+        """Checks if loads json file content to json_data when file name is correct or data in json file is correct"""
         mocker.patch("builtins.input", return_value="")
         mocker.patch(
             "builtins.open", mocker.mock_open(read_data=str(mocked_correct_json_data))
@@ -25,6 +27,7 @@ class TestJsonFileHandler:
 
     @pytest.mark.load_from_file
     def test_should_load_incorrect_json_data_to_list_from_file(self, mocker):
+        """Checks if json_data is [] when file name is incorrect or data in json file is incorrect"""
         mocker.patch("builtins.input", return_value="")
         mocker.patch("builtins.open", side_effect=FileNotFoundError)
         assert self.json_file_handler.json_data is None
@@ -33,6 +36,7 @@ class TestJsonFileHandler:
 
     @pytest.mark.save_to_file
     def test_should_write_json_data_to_file(self, mocker):
+        """Checks if file handler correctly save text data as json data type"""
         mocker.patch(
             "src.file_handlers.json_file_handler.JsonFileHandler.load_from_file",
             return_value=[],
