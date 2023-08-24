@@ -43,7 +43,6 @@ class CipherManager(Manager):
     """
 
     def __init__(self):
-        # self.menu = CipherMenu()
         self.choice: Union[None, int] = None
         self.content_input: Union[None, str] = None
         self.file_handler = JsonFileHandler()
