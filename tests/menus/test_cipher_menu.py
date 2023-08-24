@@ -11,14 +11,16 @@ class TestMenu:
 
     @pytest.mark.display_welcome
     def test_should_check_calls_method_in_display_welcome(self, mocker, cipher_menu):
+        """Check correctness of calling print methods"""
         mocked_print = mocker.patch("builtins.print")
         cipher_menu.display_welcome()
         expected_calls = [mocker.call("\nWelcome to Cipher")]
         mocked_print.assert_has_calls(expected_calls)
-        assert mocked_print.call_count == 1  # nosec
+        assert mocked_print.call_count == 1
 
     @pytest.mark.display_main_menu
     def test_should_check_calls_method_in_display_main_manu(self, mocker, cipher_menu):
+        """Check correctness of calling print methods"""
         mocked_print = mocker.patch("builtins.print")
         cipher_menu.display_main_menu()
         expected_calls = [
@@ -30,12 +32,13 @@ class TestMenu:
             mocker.call("5. Exit"),
         ]
         mocked_print.assert_has_calls(expected_calls)
-        assert mocked_print.call_count == 6  # nosec
+        assert mocked_print.call_count == 6
 
     @pytest.mark.display_main_menu
     def test_should_check_calls_method_in_display_cipher_manu(
         self, mocker, cipher_menu
     ):
+        """Check correctness of calling print methods"""
         mocked_print = mocker.patch("builtins.print")
         cipher_menu.display_cipher_menu()
         expected_calls = [
@@ -44,4 +47,4 @@ class TestMenu:
             mocker.call("2. ROT47"),
         ]
         mocked_print.assert_has_calls(expected_calls)
-        assert mocked_print.call_count == 3  # nosec
+        assert mocked_print.call_count == 3
