@@ -1,5 +1,5 @@
 """A module to represent a class CipherMenu"""
-from src.menus.menu import Menu
+from menus.menu import Menu
 
 
 class CipherMenu(Menu):
