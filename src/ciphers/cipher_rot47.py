@@ -2,7 +2,7 @@
 """A module to represent a class of cipher ROT47.
 "Shift" means shift in ASCII encoding system.
 """
-from src.ciphers.cipher import Cipher
+from ciphers.cipher import Cipher
 
 
 class CipherROT47(Cipher):
