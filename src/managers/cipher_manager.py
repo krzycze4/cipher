@@ -3,15 +3,15 @@
 from copy import copy
 from typing import Union, Dict, Callable
 
-from src.buffers.buffer import Buffer
-from src.ciphers.cipher import Cipher
-from src.ciphers.cipher_rot13 import CipherROT13
-from src.ciphers.cipher_rot47 import CipherROT47
-from src.exceptions.exceptions import OutOfRangeError, EmptyInputError
-from src.file_handlers.json_file_handler import JsonFileHandler
-from src.managers.manager import Manager
-from src.menus.cipher_menu import CipherMenu
-from src.texts.text import Text
+from buffers.buffer import Buffer
+from ciphers.cipher import Cipher
+from ciphers.cipher_rot13 import CipherROT13
+from ciphers.cipher_rot47 import CipherROT47
+from exceptions.exceptions import OutOfRangeError, EmptyInputError
+from file_handlers.json_file_handler import JsonFileHandler
+from managers.manager import Manager
+from menus.cipher_menu import CipherMenu
+from texts.text import Text
 
 
 class CipherManager(Manager):
