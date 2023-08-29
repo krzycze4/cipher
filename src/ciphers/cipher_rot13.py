@@ -4,7 +4,7 @@ A module to represent a class of cipher ROT13.
 "Shift" means shift in ASCII encoding system.
 """
 
-from src.ciphers.cipher import Cipher
+from ciphers.cipher import Cipher
 
 
 class CipherROT13(Cipher):
