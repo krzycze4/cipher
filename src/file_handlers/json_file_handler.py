@@ -3,8 +3,8 @@
 import json
 from typing import List, Union, Dict
 
-from src.file_handlers.file_handler import FileHandler
-from src.texts.text import Text
+from file_handlers.file_handler import FileHandler
+from texts.text import Text
 
 
 class JsonFileHandler(FileHandler):
