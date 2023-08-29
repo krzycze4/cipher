@@ -28,7 +28,9 @@ class TestCipherManager:
 
     @pytest.mark.run
     def test_should_do_while_loop_twice(self, mocker):
-        """Checks if while loop is doing twice - first when user's input is not in particular range and second when it's in range"""
+        """Checks if while loop is doing twice -
+        first when user's input is not in particular range and second when it's in range
+        """
         mocker.patch("src.menus.cipher_menu.CipherMenu.display_welcome")
         mocker.patch("src.menus.cipher_menu.CipherMenu.display_main_menu")
         mocker.patch("src.managers.cipher_manager.CipherManager.take_choice")
@@ -47,7 +49,8 @@ class TestCipherManager:
     def test_should_set_self_choice_when_self_first_out_of_range_then_in_range(
         self, mocker, limit=2
     ):
-        """Checks if while is doing twice - first when user's input is out of range and second one when it is in range"""
+        """Checks if while runs twice -
+        first when user's input is out of range and second one when it is in range"""
         mocker.patch("builtins.input", side_effect=[limit + 1, limit])
         self.manager.take_choice(limit=limit)
         assert self.manager.choice == limit
@@ -56,7 +59,8 @@ class TestCipherManager:
     def test_should_set_self_choice_when_self_first_wrong_type_then_correct(
         self, mocker, limit=2
     ):
-        """Checks if while is doing twice - first when user's input is not an integer and second one when it is in range"""
+        """Checks if while runs twice -
+        first when user's input is not an integer and second one when it is in range"""
         mocker.patch("builtins.input", side_effect=["string", limit])
         self.manager.take_choice(limit=limit)
         assert self.manager.choice == limit
@@ -125,7 +129,7 @@ class TestCipherManager:
 
     @pytest.mark.take_input_content
     def test_should_set_content_input_when_input_is_not_only_whitespaces(self, mocker):
-        """Checks if while loop is doing once - input is not only whitespaces and if not set it to content"""
+        """Checks if while loop runs once - input is not only whitespaces and if not set it to content"""
         mocker.patch("builtins.input", return_value="123")
         self.manager.take_input_content()
         assert self.manager.content_input == "123"
@@ -134,7 +138,7 @@ class TestCipherManager:
     def test_should_set_content_input_when_input_is_whitespaces_and_then_not(
         self, mocker
     ):
-        """Checks if while loop is doing twice, first when input is only whitespace and second when it's not"""
+        """Checks if while loop runs twice, first when input is only whitespace and second when it's not"""
         mocker.patch("builtins.input", side_effect=[" ", "123"])
         self.manager.take_input_content()
         assert self.manager.content_input == "123"
