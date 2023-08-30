@@ -2,7 +2,7 @@
 from abc import ABC, abstractmethod
 from typing import List
 
-from texts.text import Text
+from texts import Text
 
 
 class FileHandler(ABC):

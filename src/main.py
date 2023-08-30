@@ -1,5 +1,5 @@
 """A module to execute the whole project."""
-from src.managers.cipher_manager import CipherManager
+from managers import CipherManager
 
 
 def main():

@@ -1,7 +1,7 @@
 """Module represents class Buffer"""
 from typing import List
 
-from texts.text import Text
+from texts import Text
 
 
 class Buffer:
